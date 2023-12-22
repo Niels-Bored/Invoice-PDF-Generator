@@ -59,23 +59,23 @@ def generatePDF(name, address, postal_code, city, country, phone, description, v
     page.merge_page(new_pdf.pages[1])
     output.add_page(page)
 
-    new_pdf = os.path.join (output_folder, f"Invoice {sale_number}.pdf")
+    new_pdf = os.path.join (output_folder, f"{sale_number} {name}.pdf")
     output_stream = open(new_pdf, "wb")
     output.write(output_stream)
     output_stream.close()
 
+    return new_pdf
+if __name__=="__main__":  
+    name = "Ja'waun Jones"
+    address = "1009 Private Rd 2913" 
+    postal_code = "65257" 
+    city = "Higbee" 
+    country = "USA" 
+    phone = "6602771577"
+    description = "Electronic for virtual reality"
+    value = "302,00 €" 
+    subtotal = "302,00 €" 
+    sale_number = "490"
+    date = "21/12/2023"
 
-  
-name = "Ja'waun Jones"
-address = "1009 Private Rd 2913" 
-postal_code = "65257" 
-city = "Higbee" 
-country = "USA" 
-phone = "6602771577"
-description = "Electronic for virtual reality"
-value = "302,00 €" 
-subtotal = "302,00 €" 
-sale_number = "490"
-date = "21/12/2023"
-
-generatePDF(name, address, postal_code, city, country, phone, description, value, subtotal, sale_number, date)
+    generatePDF(name, address, postal_code, city, country, phone, description, value, subtotal, sale_number, date)
