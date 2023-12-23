@@ -15,7 +15,7 @@ font_roboto_medium = os.path.join (fonts_folder, "Roboto-Medium.ttf")
 font_roboto_bold = os.path.join (fonts_folder, "Roboto-Bold.ttf")
 original_pdf = os.path.join (input_folder, f"template.pdf")
 
-def generatePDF(name, address, postal_code, city, country, phone, description, value, subtotal, sale_number, date):
+def generatePDF(name, address, postal_code, city, country, phone, description, value, subtotal, total, sale_number, date):
     packet = io.BytesIO()
 
     pdfmetrics.registerFont(TTFont('roboto',font_roboto))
@@ -36,6 +36,7 @@ def generatePDF(name, address, postal_code, city, country, phone, description, v
     c.drawString(38, 305, description)
     c.drawString(472, 305, value)
     c.drawString(525, 305, subtotal)
+    c.drawString(472, 54, total)
 
     c.showPage()
 
@@ -65,6 +66,7 @@ def generatePDF(name, address, postal_code, city, country, phone, description, v
     output_stream.close()
 
     return new_pdf
+
 if __name__=="__main__":  
     name = "Ja'waun Jones"
     address = "1009 Private Rd 2913" 
@@ -74,8 +76,9 @@ if __name__=="__main__":
     phone = "6602771577"
     description = "Electronic for virtual reality"
     value = "302,00 €" 
-    subtotal = "302,00 €" 
+    subtotal = "302,00 €"
+    total = "302,00 €" 
     sale_number = "490"
     date = "21/12/2023"
 
-    generatePDF(name, address, postal_code, city, country, phone, description, value, subtotal, sale_number, date)
+    generatePDF(name, address, postal_code, city, country, phone, description, value, subtotal, total, sale_number, date)
